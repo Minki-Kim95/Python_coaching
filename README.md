@@ -7,6 +7,7 @@ SKKU's teaching program by @keeyong
 This repository is used for submission of assignments.
 
 ### Week 1
+
 Assignment1
 
 ```
@@ -22,3 +23,7 @@ When two strings are given, print the common characters from both strings
 
 ex) input: aflji, sefoh   //  output: f 
 ```
+
+## Mentor
+
+* **Han Keeyong** - *Code Reviewer* - [Account](https://github.com/keeyong)
