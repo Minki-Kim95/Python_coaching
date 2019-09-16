@@ -1,4 +1,4 @@
-# Python_coaching
+# Python coaching program
 
 This is SKKU's teaching program for learning how to do coding more practical and efficially.
 
