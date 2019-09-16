@@ -1,6 +1,6 @@
 # Python_coaching
 
-SKKU's teaching program 
+SKKU's teaching program by @keeyong
 
 ## Purpose of repository
 
@@ -10,7 +10,7 @@ This repository is used for submission of assignments.
 Assignment1
 
 ```
-문자열이 주어졌을때 그걸 리버스하는 코드를 작성 (without python modules)
+Write code to reverse a given string  (without python modules)
 
 ex) input: abc  //   return: cba,
 ```
@@ -18,7 +18,7 @@ ex) input: abc  //   return: cba,
 Assignment2
 
 ```
-두개의 문자열이 주어졌을때 각 문자열에서 공통적인 글자들을 출력
+When two strings are given, print the common characters from both strings
 
 ex) input: aflji, sefoh   //  output: f 
 ```
