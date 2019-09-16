@@ -1,6 +1,6 @@
 # Python_coaching
 
-SKKU's teaching program by @keeyong
+This is SKKU's teaching program for learning how to do coding more practical and efficially.
 
 ## Purpose of repository
 
