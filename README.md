@@ -20,7 +20,7 @@ Assignment2
 
 ```
 When two strings are given, print the common characters from both strings 
-(all the character involved in ASCII possible)
+(all the characters possible involved in ASCII possible)
 
 ex) input: aflji, sefoh   //  output: f 
 ```
