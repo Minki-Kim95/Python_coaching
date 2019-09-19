@@ -7,33 +7,33 @@
 
 
 def findcommon(input1, input2):
-    input1_list = []
-    input2_list = []
+    input1_list = {}
+    input2_list = {}
 
     for i in input1:
-        input1_list.append(ord(i))
+        input1_list[ord(i)] = i
 
-    input1_list = list(set(input1_list))    # delete duplications
-    input1_list.sort()
+    input1_list = sorted(input1_list.keys())
 
     for i in input2:
-        input2_list.append(ord(i))
+        input2_list[ord(i)] = i
 
-
-    input2_list = list(set(input2_list))    # delete duplications
-    input2_list.sort()
+    input2_list = sorted(input2_list.keys())
 
     output = ""
 
-    k = 0
+
     # k를 사용하는 이유: 이중 포문에서 두 리스트 비교중 일치하는 것을 찾으면
     # 일치하는 원소의 그 전 원소들은 비교할 필요가 없으므로 (미리 리스트를 정렬해둔 덕에)
     # 그 다음부터 확인하도록 알고리즘 고안
     # for j in range(k, lenth2):   input2_list[j]
+
+    k = 0
+
     for i in input1_list:
         for j in input2_list[k:]:
             if i == j:
-                k = input2_list.index(j) + 1   # 일치한 것을 찾은 경우, 일치한 원소의 그 다음 원소부터 읽도록 k 값 변경
+                k = input2_list.index(j) + 1  # 일치한 것을 찾은 경우, 일치한 원소의 그 다음 원소부터 읽도록 k 값 변경
                 output = output + chr(i)
                 break
 
