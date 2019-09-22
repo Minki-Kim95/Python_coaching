@@ -25,6 +25,13 @@ When two strings are given, print the common characters from both strings
 ex) input: aflji, sefoh   //  output: f 
 ```
 
+
+### Project
+
+```
+Will be updated soon
+```
+
 ## Mentor
 
 * **Han Keeyong** - *Code Reviewer* - [Account](https://github.com/keeyong)
