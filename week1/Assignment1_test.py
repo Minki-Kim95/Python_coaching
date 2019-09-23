@@ -2,7 +2,8 @@
 # 근데 테스트중에 입력받는건 좀 이상하다 그냥 샘플로 하자
 
 import unittest
-import Assignment1 as hw1
+from week1 import Assignment1 as hw1
+
 
 class TestAssignment1(unittest.TestCase):
 
