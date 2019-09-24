@@ -1,5 +1,6 @@
 import unittest
-import Assignment2 as ass2
+from week1 import Assignment2 as ass2
+
 
 class TestAssignment1(unittest.TestCase):
 
