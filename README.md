@@ -26,11 +26,27 @@ ex) input: aflji, sefoh   //  output: f
 ```
 
 
-### Project
+### Week2
+
+
+Assignment1
 
 ```
-Will be updated soon
+1. install Flask
+2. make a web server code which return "Hello world" by flask
+3. learn about requirements.txt and put the moduls in there
+4. use pylint to check style of code
 ```
+
+Assignment2
+
+```
+1. Ask the name of vistor and attach that behind the Hello world and return it
+
+ex) input: Gil-dong -> return: Hello world Gil-dong
+2. use pylint to check code style
+```
+
 
 ## Mentor
 
