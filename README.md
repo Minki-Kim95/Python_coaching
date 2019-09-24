@@ -8,6 +8,8 @@ This repository is used for submission of assignments.
 
 ### Week 1
 
+* How to do unit test and do a little assignments
+
 Assignment1
 
 ```
@@ -28,7 +30,7 @@ ex) input: aflji, sefoh   //  output: f
 
 ### Week2
 
-
+* learn how to use flask and understand HTTP protocol and HTML
 Assignment1
 
 ```
