@@ -31,6 +31,7 @@ ex) input: aflji, sefoh   //  output: f
 ### Week2
 
 * learn how to use flask and understand HTTP protocol and HTML
+
 Assignment1
 
 ```
