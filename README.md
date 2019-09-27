@@ -50,6 +50,15 @@ ex) input: Gil-dong -> return: Hello world Gil-dong
 2. use pylint to check code style
 ```
 
+Assignment3
+
+```
+Implement a web service that returns a yard when you enter a meter.
+(error handling when client typing non-numeric value)
+ex) input: 3 -> 3.28084
+input: face -> reload with alert "please type number"
+```
+
 
 ## Mentor
 
