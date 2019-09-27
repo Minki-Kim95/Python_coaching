@@ -1,3 +1,6 @@
+"""
+flask module
+"""
 from flask import Flask
 
 app = Flask(__name__)
@@ -5,6 +8,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+    """
+    home
+    :return: just Hello world
+    """
     return "Hello World!"
 
 
