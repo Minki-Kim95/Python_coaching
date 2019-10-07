@@ -60,6 +60,27 @@ input: face -> reload with alert "please type number"
 ```
 
 
+### Week3
+
+* Edit hangman game code and store the score by RDBMS
+* hangmen code from (https://github.com/keeyong/hangman)
+
+Assignment1
+
+```
+1. read words in file (words1.txt)
+2. store highest score in file (highest_score1.txt)
+standard of highest score: Least number of missed letter
+```
+
+Assignment2
+
+```
+1. Use database (not file)
+2. Use Sqlite
+```
+
+
 ## Mentor
 
 * **Han Keeyong** - *Code Reviewer* - [Account](https://github.com/keeyong)
