@@ -28,5 +28,9 @@ def post():
     except ValueError:
         return redirect(url_for('index')) # render_template('meter_yard.html')
 
+    except:
+        return 'undefined error is evoked'
+
+
 if __name__ == '__main__':
     app.run()
