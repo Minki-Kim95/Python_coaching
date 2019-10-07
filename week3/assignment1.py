@@ -60,10 +60,15 @@ HANGMANPICS = ['''
       |
 =========''']
 
-f = open("words1.txt", 'r')
-words = f.readline()
-words = words.split()
-f.close()
+def loadFile():
+    try:
+        f = open("words1.txt", 'r')
+        words = f.readline()
+        words = words.split()
+        f.close()
+    except:
+        words = ['asdf', 'qwer']
+    return words
 
 def getRandomWord(wordList):
     # This function returns a random string from the passed list of strings.
@@ -134,11 +139,13 @@ def checkWrongAnswer(missedLetters, secretWord):
 def main():
     """Main application entry point."""
     print('H A N G M A N by ...')
+    words = loadFile()
     missedLetters = ''
     correctLetters = ''
     gameSucceeded = False
     gameFailed = False
     secretWord = getRandomWord(words)
+
 
     while True:
         displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
@@ -147,18 +154,24 @@ def main():
             if gameSucceeded:
                 print('Yes! The secret word is "' + secretWord + '"! You have won!')
                 # store highscore in highest_score1.txt
-                f = open("highest_score1.txt", "r")
-                highscore = f.readline()
-                f.close()
+                try:
+                    f = open("highest_score1.txt", "r")
+                    highscore = f.readline()
+                    f.close()
+                except:
+                    highscore = 0
 
-                f = open("highest_score1.txt", "w")
-                missed_length = len(missedLetters)
-                print("last highscore: ", highscore, "present score: ", missed_length)
-                if missed_length < int(highscore):
-                    f.write(str(missed_length))
-                    print("new highscore!")
+                try:
+                    f = open("highest_score1.txt", "w")
+                    missed_length = len(missedLetters)
+                    print("last highscore: ", highscore, "present score: ", missed_length)
+                    if missed_length < int(highscore):
+                        f.write(str(missed_length))
+                        print("new highscore!")
+                    f.close()
+                except:
+                    print("file write fail")
 
-                f.close()
 
 
             else:
