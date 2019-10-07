@@ -65,26 +65,38 @@ HANGMANPICS = ['''
 '''
 보안상의 이유로 table 정보 입력 X
 '''
-conn = pymysql.connect(host='', user='', password='', db='', charset='')
 
-curs = conn.cursor()
-sql = "select * from words"
-curs.execute(sql)
-rows = curs.fetchall()
-words = []
-for row in rows:
-    words.append(row[1])
-'''
-database format:
-
-words
-id  name
-0   ant
-1   baboon
-........
-'''
 
 # words = 'ant baboon badger bat bear beaver camel cat clam cobra cougar coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk lion lizard llama mole monkey moose mouse mule newt otter owl panda parrot pigeon python rabbit ram rat raven rhino salmon seal shark sheep skunk sloth snake spider stork swan tiger toad trout turkey turtle weasel whale wolf wombat zebra'.split()
+'''
+   database format:
+
+   words
+   _id  name
+   0   qwer
+   1   asdf
+   ........
+   '''
+def loadFile():
+    conn = pymysql.connect(host='',
+                           user='',
+                           password='',
+                           db='WORDS', charset='')
+
+    try:
+        with conn.cursor() as cursor:
+            sql = 'SELECT * FROM word'
+            cursor.execute(sql)
+            rows = cursor.fetchall()
+            words = []
+            for row in rows:
+                words.append(row[1])
+            conn.close()
+    except:
+        words = ['asdf', 'qwer']
+
+    return words
+
 
 
 def getRandomWord(wordList):
@@ -156,6 +168,7 @@ def checkWrongAnswer(missedLetters, secretWord):
 def main():
     """Main application entry point."""
     print('H A N G M A N by ...')
+    words = loadFile()
     missedLetters = ''
     correctLetters = ''
     gameSucceeded = False
