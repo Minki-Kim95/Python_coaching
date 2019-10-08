@@ -66,7 +66,8 @@ def loadFile():
         words = f.readline()
         words = words.split()
         f.close()
-    except:
+    except Exception as e:
+        print("Error message: ", str(e))
         words = ['asdf', 'qwer']
     return words
 
@@ -158,7 +159,8 @@ def main():
                     f = open("highest_score1.txt", "r")
                     highscore = f.readline()
                     f.close()
-                except:
+                except Exception as e:
+                    print("Error message: ", str(e))
                     highscore = 0
 
                 try:
@@ -169,8 +171,8 @@ def main():
                         f.write(str(missed_length))
                         print("new highscore!")
                     f.close()
-                except:
-                    print("file write fail")
+                except Exception as e:
+                    print("Error message: ", str(e))
 
 
 

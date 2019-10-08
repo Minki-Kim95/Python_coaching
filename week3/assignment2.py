@@ -68,34 +68,55 @@ HANGMANPICS = ['''
 
 
 # words = 'ant baboon badger bat bear beaver camel cat clam cobra cougar coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk lion lizard llama mole monkey moose mouse mule newt otter owl panda parrot pigeon python rabbit ram rat raven rhino salmon seal shark sheep skunk sloth snake spider stork swan tiger toad trout turkey turtle weasel whale wolf wombat zebra'.split()
-'''
-   database format:
 
-   words
-   _id  name
-   0   qwer
-   1   asdf
-   ........
-   '''
 def loadFile():
-    conn = pymysql.connect(host='',
-                           user='',
-                           password='',
-                           db='WORDS', charset='')
+    """
+    database format:
+    word
+    _id  name
+    0   qwer
+    1   asdf
+    ........
+    :return: words
+    """
 
-    try:
-        with conn.cursor() as cursor:
-            sql = 'SELECT * FROM word'
-            cursor.execute(sql)
-            rows = cursor.fetchall()
-            words = []
-            for row in rows:
-                words.append(row[1])
+    while True:
+        try:
+            conn = pymysql.connect(host='',
+                                   user='',
+                                   password='',
+                                   db='WORDS', charset='utf8')
+            with conn.cursor() as cursor:
+                sql = 'SELECT * FROM word'
+                cursor.execute(sql)
+                rows = cursor.fetchall()
+                words = []
+                for row in rows:
+                    words.append(row[1])
+
+        except pymysql.err.ProgrammingError:
+            conn = pymysql.connect(host='',    # DB 연결 자체가 안되는경우도 고려(OperationError)
+                                   user='',
+                                   password='',
+                                   db='WORDS', charset='utf8')
+            with conn.cursor() as cursor:
+                sql = 'CREATE TABLE word (_id int, name varchar(255))'
+                cursor.execute(sql)
+                sql = 'INSERT INTO word (name) VALUES ("abcd")'
+                cursor.execute(sql)
+                sql = 'INSERT INTO word (name) VALUES ("qwer")'
+                cursor.execute(sql)
+                continue
+        except Exception as e:
+            print("Error message", str(e))
+            words = ['abcd', 'qwer']
+            break
+        else:
             conn.close()
-    except:
-        words = ['asdf', 'qwer']
+            break
 
     return words
+
 
 
 
