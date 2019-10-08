@@ -81,6 +81,18 @@ Assignment2
 ```
 
 
+
+### Week4
+
+* Lanch on server by EC2 (AWS)
+
+Assignment
+
+```
+make hangman game code can run on website by flask
+
+```
+
 ## Mentor
 
 * **Han Keeyong** - *Code Reviewer* - [Account](https://github.com/keeyong)
