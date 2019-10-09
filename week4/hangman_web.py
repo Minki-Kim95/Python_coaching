@@ -68,10 +68,10 @@ def loadWordList():
     words = []
     try:
         conn = pymysql.connect(host='localhost',
-                       user='root', password='keeyonghan',
-                       db='test', charset='utf8')
+                       user='root', password='1234',
+                       db='words', charset='utf8')
         curs = conn.cursor()
-        sql = "select word from test.words"
+        sql = "select name from words.word"
         curs.execute(sql)
         rows = curs.fetchall()
         for row in rows:
