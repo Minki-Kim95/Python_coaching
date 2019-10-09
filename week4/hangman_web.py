@@ -65,22 +65,21 @@ HANGMANPICS = ['''
 =========''']
 
 def loadWordList():
-    # words = []
-    # try:
-    #     conn = pymysql.connect(host='localhost',
-    #                    user='root', password='1234',
-    #                    db='words', charset='utf8')    # 없어질 디비이기에 보안유지 X
-    #     curs = conn.cursor()
-    #     sql = "select name from words.word"
-    #     curs.execute(sql)
-    #     rows = curs.fetchall()
-    #     for row in rows:
-    #         words.append(row[0])
-    #     conn.close()
-    # except Exception as e:
-    #     print("Can't read from the word table")
-    #     words = ['abcd', 'abcd']
-    words = ['abcd', 'abcd']
+    words = []
+    try:
+        conn = pymysql.connect(host='localhost',
+                       user='root', password='1234',
+                       db='words', charset='utf8')    # 없어질 디비이기에 보안유지 X
+        curs = conn.cursor()
+        sql = "select name from words.word"
+        curs.execute(sql)
+        rows = curs.fetchall()
+        for row in rows:
+            words.append(row[0])
+        conn.close()
+    except Exception as e:
+        print("Can't read from the word table")
+        words = ['abcd', 'abcd']
     return words
 
 def getRandomWord(wordList):
@@ -206,12 +205,6 @@ def main_post():
                 html += 'You have run out of guesses!<p>After ' + str(
                     len(session["missedLetters"])) + ' missed guesses and ' + str(
                     len(session["correctLetters"])) + ' correct guesses, the word was "' + session["secretWord"] + '"'
-
-            html += '<p>Do you want to play again? (yes or no)</p>'
-            html += '<form method = "post">'
-            html += '<p>input: <input type = "text" name = "again"></p>'
-            html += '<input type = "submit" value = "input">'
-            html += '</form>'
 
         # no success or fail
         else:
