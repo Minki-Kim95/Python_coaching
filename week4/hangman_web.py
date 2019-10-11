@@ -140,6 +140,13 @@ def checkWrongAnswer(missedLetters, secretWord):
         return True
     return False
 
+def inputformat():
+    html = '<form method = "post">'
+    html += '<p>input: <input type = "text" name = "letter"></p>'
+    html += '<input type = "submit" value = "input">'
+    html += '</form>'
+    return html
+
 @app.route("/")
 def main():
     session["words"] = loadWordList()
@@ -149,10 +156,7 @@ def main():
 
     # input char
     inputform = 'Guess a letter.'
-    inputform += '<form method = "post">'
-    inputform += '<p>input: <input type = "text" name = "letter"></p>'
-    inputform += '<input type = "submit" value = "input">'
-    inputform += '</form>'
+    inputform += inputformat()
 
     session["missedLetters"] = ''
     session["correctLetters"] = ''
@@ -175,10 +179,7 @@ def main_post():
 
     # input form
     inputform = message_input
-    inputform += '<form method = "post">'
-    inputform += '<p>input: <input type = "text" name = "letter"></p>'
-    inputform += '<input type = "submit" value = "input">'
-    inputform += '</form>'
+    inputform += inputformat()
 
     # when input value has problem
     if inputvalid == 0:
