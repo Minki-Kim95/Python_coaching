@@ -69,16 +69,17 @@ def loadWordList():
     try:
         conn = pymysql.connect(host='localhost',
                        user='root', password='1234',
-                       db='words', charset='utf8')
+                       db='words', charset='utf8')    # 없어질 디비이기에 보안유지 X
         curs = conn.cursor()
         sql = "select name from words.word"
         curs.execute(sql)
         rows = curs.fetchall()
         for row in rows:
             words.append(row[0])
-        conn.close() 
+        conn.close()
     except Exception as e:
         print("Can't read from the word table")
+        words = ['abcd', 'abcd']
     return words
 
 def getRandomWord(wordList):
@@ -107,24 +108,21 @@ def displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord):
 
     return "<h3><pre>" + html + "</pre></h3>"
 
-def getGuess(alreadyGuessed):
+def check_Input(alreadyGuessed, guess):
     # Returns the letter the player entered. This function makes sure the player entered a single letter, and not something else.
-    while True:
-        print('Guess a letter.')
-        guess = input().lower()
-        if len(guess) != 1:
-            print('Please enter a single letter.')
-        elif guess in alreadyGuessed:
-            print('You have already guessed that letter. Choose again.')
-        elif guess not in 'abcdefghijklmnopqrstuvwxyz':
-            print('Please enter a LETTER.')
-        else:
-            return guess
+    success = 0
 
-def playAgain():
-    # This function returns True if the player wants to play again, otherwise it returns False.
-    print('Do you want to play again? (yes or no)')
-    return input().lower().startswith('y')
+    if len(guess) != 1:
+        html = '<font color=tomato size=4> Please enter a single letter. </font>'
+    elif guess in alreadyGuessed:
+        html = '<font color=tomato size=4>You have already guessed that letter. Choose again.</font>'
+    elif guess not in 'abcdefghijklmnopqrstuvwxyz':
+        html = '<font color=tomato size=4>Please enter a Alphabet</font>.'
+    else:
+        success = 1
+        html = 'Guess a letter.'
+
+    return success, html
 
 # Check if the player has won
 def checkCorrectAnswer(correctLetters, secretWord):
@@ -142,20 +140,79 @@ def checkWrongAnswer(missedLetters, secretWord):
         return True
     return False
 
+def inputformat():
+    html = '<form method = "post">'
+    html += '<p>input: <input type = "text" name = "letter"></p>'
+    html += '<input type = "submit" value = "input">'
+    html += '</form>'
+    return html
+
 @app.route("/")
 def main():
     session["words"] = loadWordList()
 
     """Main application entry point."""
     header = '<h1>H A N G M A N</h1><p>'
+
+    # input char
+    inputform = 'Guess a letter.'
+    inputform += inputformat()
+
     session["missedLetters"] = ''
     session["correctLetters"] = ''
     session["gameSucceeded"] = False
     session["gameFailed"] = False
     session["secretWord"] = getRandomWord(session["words"])
 
-    html = "<center>" + header + displayBoard(HANGMANPICS, session["missedLetters"], session["correctLetters"], session["secretWord"]) + "</center>"
+    html = "<center>" + header + displayBoard(HANGMANPICS, session["missedLetters"], session["correctLetters"], session["secretWord"]) + inputform + "</center>"
 
+    return html
+
+@app.route("/", methods=['POST'])
+def main_post():
+    guess = request.form['letter']
+
+    header = '<h1>H A N G M A N</h1><p>'
+
+    # reaction of input
+    inputvalid, message_input = check_Input(session["missedLetters"] + session["correctLetters"], guess)
+
+    # input form
+    inputform = message_input
+    inputform += inputformat()
+
+    # when input value has problem
+    if inputvalid == 0:
+        html = "<center>" + header + displayBoard(HANGMANPICS, session["missedLetters"], session["correctLetters"],
+                                                  session["secretWord"]) + inputform
+    # when input value is valid
+    else:
+        if guess in session["secretWord"]:
+            session["correctLetters"] += guess
+            session["gameSucceeded"] = checkCorrectAnswer(session["correctLetters"], session["secretWord"])
+        else:
+            session["missedLetters"] += guess
+            session["gameFailed"] = checkWrongAnswer(session["missedLetters"], session["secretWord"])
+
+        # basic display form
+        html = "<center>" + header + displayBoard(HANGMANPICS, session["missedLetters"], session["correctLetters"],
+                                                  session["secretWord"])
+
+        # when game is finish
+        if session["gameSucceeded"] or session["gameFailed"]:
+            if session["gameSucceeded"]:
+                html += 'Yes! The secret word is "' + session["secretWord"] + '"! You have won!'
+            else:
+                html += 'You have run out of guesses!<p>After ' + str(
+                    len(session["missedLetters"])) + ' missed guesses and ' + str(
+                    len(session["correctLetters"])) + ' correct guesses, the word was "' + session["secretWord"] + '"'
+
+        # no success or fail
+        else:
+            html += inputform
+
+    # if game
+    html += "</center>"
     return html
 
 if __name__ == "__main__":
