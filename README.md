@@ -112,7 +112,7 @@ who received the largest number of direct emails and the person (or people)
 who sent the largest number of broadcast emails.
 ```
 
-Assignment3(bonus question)
+Assignment3 (bonus question)
 
 ```
 Find the five emails with the fastest response times. 
