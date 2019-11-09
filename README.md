@@ -106,13 +106,20 @@ How many emails did each person receive each day?
 Assignment2
 
 ```
-Let's label an email as "direct" if there is exactly one recipient and "broadcast" if it has multiple recipients. Identify the person (or people) who received the largest number of direct emails and the person (or people) who sent the largest number of broadcast emails.
+Let's label an email as "direct" if there is exactly one recipient and "broadcast" 
+if it has multiple recipients. Identify the person (or people) 
+who received the largest number of direct emails and the person (or people) 
+who sent the largest number of broadcast emails.
 ```
 
-Assignment3
+Assignment3(bonus question)
 
 ```
-Find the five emails with the fastest response times. (A response is defined as a message from one of the recipients to the original sender whose subject line contains all of the words from the subject of the original email, and the response time should be measured as the difference between when the original email was sent and when the response was sent.). This is a bonus question.
+Find the five emails with the fastest response times. 
+(A response is defined as a message from one of the recipients to the original sender 
+whose subject line contains all of the words from the subject of the original email, 
+and the response time should be measured as the difference between 
+when the original email was sent and when the response was sent.). 
 ```
 ## Mentor
 
