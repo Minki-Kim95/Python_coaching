@@ -106,10 +106,10 @@ How many emails did each person receive each day?
 Assignment2
 
 ```
-Let's label an email as "direct" if there is exactly one recipient and "broadcast" 
-if it has multiple recipients. Identify the person (or people) 
-who received the largest number of direct emails and the person (or people) 
-who sent the largest number of broadcast emails.
+Let's label an email as "direct" if there is exactly one recipient 
+and "broadcast" if it has multiple recipients. 
+Identify the person (or people) who received the largest number of direct emails 
+and the person (or people) who sent the largest number of broadcast emails.
 ```
 
 Assignment3 (bonus question)
